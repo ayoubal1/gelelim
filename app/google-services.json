@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "215169612175",
+    "project_id": "gelelim-a4fdd",
+    "storage_bucket": "gelelim-a4fdd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215169612175:android:156379ac6aeb68f20033fa",
+        "android_client_info": {
+          "package_name": "com.example.gelelim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215169612175-gpmnodoeab7vu530pvb06qppqvd41l7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQFXxbwmdyzTdbHINO31zws_VULbcyJQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215169612175-gpmnodoeab7vu530pvb06qppqvd41l7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

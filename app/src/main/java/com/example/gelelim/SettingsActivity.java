@@ -3,99 +3,76 @@ package com.example.gelelim;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
+import android.os.Handler;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
+import com.example.gelelim.Database.Ads;
+import com.example.gelelim.Database.Customer;
+import com.example.gelelim.Database.Driver;
+import com.example.gelelim.FireCloud.FirebaseService;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.ArrayList;
 
-public class SettingsActivity extends AppCompatActivity {
-    private CircleImageView profileImageView;
-    private EditText nameEditText, phoneEditText, driverCarName;
-    private ImageView closeButton, saveButton;
-    private TextView profileChangeBtn;
-    private String getType;
-    private DatabaseReference databaseReference;
-    private FirebaseAuth mAuth;
+class SettingsActivit extends AppCompatActivity {
+    private static int SPLASH_SCREEN = 5000;
+    Animation topAnim, bottomAnim;
+    ImageView image;
 
-    private String checker = "";
-    private Uri imageUri;
-    private String myUrl = "";
-
+    TextView logo, slogan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-
-        getType = getIntent().getStringExtra("type");
-        Toast.makeText(this, getType, Toast.LENGTH_SHORT).show();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
+      /*  Driver driver=new Driver();
+        driver.setName("Halit");
+        driver.setAdress("Burasi");
+        driver.setTel("054555555");
 
-        nameEditText = findViewById(R.id.name);
-        phoneEditText = findViewById(R.id.phone_number);
+        FirebaseService.AddData(driver);
+        Customer customer=new Customer();
+        customer.setAdress("Orası");
+        customer.setName("Eyüp");
+        customer.setTel("0555555555");
+        FirebaseService.AddData(customer);*/
+        Driver driver = FirebaseService.ReadDatas(new Driver()).get(0);
+        Customer customers = FirebaseService.ReadDatas(new Customer()).get(0);
+    /*    for (int i = 0; i < 10; i++) {
+            Ads ads=new Ads();
+            ads.setDriverid(driver.getId());
+            ads.setLocation("Adana"+i);
+            ads.setType("Sakso");
+            ads.setPlaka("01ADS31");
+            FirebaseService.AddData(ads);
+        }*/
+        ArrayList<Ads> adsList = FirebaseService.ReadDatas(new Ads());
+        Ads sec = adsList.get(4);
+        String idDriver = sec.getDriverid();
+        Driver getirDriver = new Driver();
+        getirDriver.setId(idDriver);
+        getirDriver = FirebaseService.ReadData(getirDriver).get(0);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
-        driverCarName = findViewById(R.id.driver_car_name);
-        if (getType.equals("Drivers"))
-        {
-            driverCarName.setVisibility(View.VISIBLE);
-        }
-        closeButton = findViewById(R.id.close_button);
-        saveButton = findViewById(R.id.save_button);
+        image = findViewById(R.id.imageView2);
+        logo = findViewById(R.id.textView3);
+        image.setAnimation(topAnim);
+        logo.setAnimation(bottomAnim);
 
-        profileChangeBtn = findViewById(R.id.change_picture_btn);
-        profileImageView = findViewById(R.id.profile_image);
-
-        closeButton.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View view)
-            {
-                if (getType.equals("Drivers"))
-                {
-                    startActivity(new Intent(SettingsActivity.this, DriverMapActivity.class));
-                }
-                else
-                {
-                    startActivity(new Intent(SettingsActivity.this, CustomerMapActivity.class));
-                }
+            public void run() {
+                Intent intent = new Intent(SettingsActivit.this, WelcomeActivity.class);
+                startActivity(intent);
+                finish();
             }
-        });
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-
-                if (checker.equals("clicked"))
-                {
-
-                }
-                else
-                {
-
-                }
-            }
-        });
-        profileChangeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                checker = "clicked";
-
-
-
-
-
-
-            }
-        });
-
+        }, SPLASH_SCREEN);
     }
 }

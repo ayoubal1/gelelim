@@ -5,5 +5,7 @@
     <string name="title_activity_customer_map">CustomerMapActivity</string>
     <string name="title_activity_drivers_map">DriversMapActivity</string>
 
+    <string name="adders">Address</string>
+
 
 </resources>

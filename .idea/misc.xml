@@ -3,19 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/font/black_ops_one.xml" value="0.2638888888888889" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/font/sedgwick_ave_display.xml" value="0.2638888888888889" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_admin_login_register.xml" value="0.259375" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_ads.xml" value="0.128" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_adslist.xml" value="0.20153985507246377" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_advertisement.xml" value="0.20153985507246377" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_araba_arama.xml" value="0.21195652173913043" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_arabalarlistesi.xml" value="0.2453125" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_customer.xml" value="0.259375" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_customer_login_register.xml" value="0.259375" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_customer_map.xml" value="0.259375" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_customer_settings.xml" value="0.259375" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_customerlogin.xml" value="0.259375" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_customers_map.xml" value="0.259375" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_customers_map2.xml" value="0.259375" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_driver.xml" value="0.259375" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_driver_login_register.xml" value="0.259375" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_driver_map.xml" value="0.259375" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_driver_map2.xml" value="0.259375" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_driverlogin.xml" value="0.25" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_drivers_map.xml" value="0.259375" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_list_ads.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_main.xml" value="0.136" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_profie.xml" value="0.21195652173913043" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_profie_driver.xml" value="0.21195652173913043" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_settings.xml" value="0.259375" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/activity_welcome.xml" value="0.259375" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/cekmecesi.xml" value="0.259375" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/cekmecesidriver.xml" value="0.21195652173913043" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/main_toolbar.xml" value="0.259375" />
+        <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/layout/maindriver_toolbar.xml" value="0.21195652173913043" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.127" />
         <entry key="..\:/Users/ayoub/AndroidStudioProjects/gelelim/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.127" />
       </map>

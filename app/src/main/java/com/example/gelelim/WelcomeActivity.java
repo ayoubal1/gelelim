@@ -11,6 +11,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private Button DriverWelcomeButton;
     private Button CustomerWelcomeButton;
+    private Button AdminWelcomeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         DriverWelcomeButton = (Button) findViewById(R.id.driver_welcome_btn);
         CustomerWelcomeButton = (Button) findViewById(R.id.customer_welcome_btn);
+        AdminWelcomeButton = (Button) findViewById(R.id.admin_welcome_btn);
 
 
 
@@ -26,7 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Intent DriverIntent = new Intent(WelcomeActivity.this, DriverLoginRegisterActivity.class);
+                Intent DriverIntent = new Intent(WelcomeActivity.this, Driverlogin.class);
                 startActivity(DriverIntent);
             }
         });
@@ -35,7 +37,15 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Intent CustomerIntent = new Intent(WelcomeActivity.this, CustomerLoginRegisterActivity.class);
+                Intent CustomerIntent = new Intent(WelcomeActivity.this, Customerlogin.class);
+                startActivity(CustomerIntent);
+            }
+        });
+        AdminWelcomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent CustomerIntent = new Intent(WelcomeActivity.this, AdminLoginRegisterActivity.class);
                 startActivity(CustomerIntent);
             }
         });

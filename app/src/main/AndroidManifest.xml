@@ -19,7 +19,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gelelim">
         <activity
-            android:name=".CustomerSettingsActivity"
+            android:name=".AdslistActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdvertisementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfieDriverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ArabalarlistesiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ArabaAramaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfieActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Customerlogin"
+            android:exported="false" />
+        <activity
+            android:name=".Driverlogin"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminActivty"
+            android:exported="false" />
+        <activity
+            android:name=".DriverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DriverLoginRegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminLoginRegisterActivity"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -37,35 +73,13 @@
             android:value="AIzaSyAQFXxbwmdyzTdbHINO31zws_VULbcyJQM" />
 
         <activity
-            android:name=".CustomersMapActivity"
-            android:exported="false"
-            android:label="@string/title_activity_customers_map" />
-        <activity
-            android:name=".DriversMapActivity"
-            android:exported="false"
-            android:label="@string/title_activity_drivers_map" />
-        <activity
-            android:name=".SettingsActivity"
+            android:name=".SettingsActivit"
             android:exported="false" />
-        <activity
-            android:name=".DriverMapActivity"
-            android:exported="false"
-            android:label="@string/title_activity_driver_map" />
-        <activity
-            android:name=".CustomerMapActivity"
-            android:exported="false"
-            android:label="@string/title_activity_customer_map" />
         <activity
             android:name=".CustomerLoginRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".DriverLoginRegisterActivity"
-            android:exported="false" />
-        <activity
             android:name=".WelcomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -13,9 +13,10 @@
         android:layout_height="60dp"
         android:layout_alignStart="@+id/driver_welcome_btn"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="131dp"
+        android:layout_marginStart="-1dp"
+        android:layout_marginBottom="241dp"
         android:background="@android:color/holo_red_dark"
-        android:text="müşteriyim"
+        android:text="MÜŞTER"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"
         android:textSize="18sp" />
@@ -24,12 +25,28 @@
         android:id="@+id/driver_welcome_btn"
         android:layout_width="250dp"
         android:layout_height="60dp"
-        android:background="@android:color/background_light"
-        android:text=" sürücüyüm"
-        android:textAllCaps="false"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="18sp"
         android:layout_above="@+id/customer_welcome_btn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp" />
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="109dp"
+        android:layout_marginBottom="11dp"
+        android:background="@android:color/background_light"
+        android:text="SÜRÜCÜ"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/admin_welcome_btn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/customer_welcome_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="-131dp"
+        android:background="@android:color/background_light"
+        android:text=" ADMİN"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
 </RelativeLayout>

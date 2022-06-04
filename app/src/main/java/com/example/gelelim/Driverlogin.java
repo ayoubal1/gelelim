@@ -45,10 +45,10 @@ public class Driverlogin extends AppCompatActivity {
 
             }
         });
-        LoginDriverButton.setOnClickListener(new View.OnClickListener() {
+      /*  LoginDriverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* String mailadress=DriverEmail.getText().toString();
+                String mailadress=DriverEmail.getText().toString();
                 String password=DriverEmail.getText().toString();
 
 
@@ -56,16 +56,13 @@ public class Driverlogin extends AppCompatActivity {
                     Toast.makeText(Driverlogin.this, "Lütfan Boşlok Bırakmayın", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Category category= FirebaseService.SearchCustom(new Category(),FirebaseService.QueryCustom
-                            (new Category()).  whereEqualTo("mail", mailadress).whereEqualTo("password", password)    ).get(0);
+                   Category category= FirebaseService.SearchCustom(new Category(),FirebaseService.QueryCustom(new Category()).  whereEqualTo("mail", mailadress).whereEqualTo("password", password)    ).get(0);
 
                     if (category!=null)
-                        Toast.makeText(Driverlogin.this, "Driver  Added", Toast.LENGTH_SHORT).show();*/
+                        Toast.makeText(Driverlogin.this, "Driver  Added", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Driverlogin.this, DriverActivity.class);
                     startActivity(intent);
                     finish();
-
-
                 }
 
 
@@ -73,7 +70,7 @@ public class Driverlogin extends AppCompatActivity {
 
 
         });
-
+*/
 
 
 

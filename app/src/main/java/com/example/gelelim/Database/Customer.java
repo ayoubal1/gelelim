@@ -7,6 +7,33 @@ public class Customer implements IFirebase {
     String tel;
     String adress;
     String name;
+    String mail;
+    String password;
+    int type;
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getId() {
         return id;

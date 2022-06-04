@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gelelim.Database.Customer;
+import com.example.gelelim.FireCloud.FirebaseService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,7 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CustomerLoginRegisterActivity extends AppCompatActivity {
-    private TextView CreateCustomerAccount ,Customername ,Customertel;
+    private TextView CreateCustomerAccount, Customername, Customertel;
     private TextView TitleCustomer;
     private Button LoginCustomerButton;
     private Button RegisterCustomerButton;
@@ -41,8 +43,7 @@ public class CustomerLoginRegisterActivity extends AppCompatActivity {
     private EditText CustomerPassword;
     private Spinner Spiadderscustomer;
     FirebaseFirestore db;
-
-
+    ArrayList<String> adders = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +58,9 @@ public class CustomerLoginRegisterActivity extends AppCompatActivity {
         RegisterCustomerButton = (Button) findViewById(R.id.admin_register_btn);
         CustomerEmail = (EditText) findViewById(R.id.customer_email);
         CustomerPassword = (EditText) findViewById(R.id.customer_password);
-        Spiadderscustomer= (Spinner)findViewById(R.id.spiadderscustomer);
+        Spiadderscustomer = (Spinner) findViewById(R.id.spiadderscustomer);
 
-        ArrayList<String> adders = new ArrayList<String>();
+
         adders.add("Adderss");
         adders.add("ankara");
         adders.add("kastamoun");
@@ -67,53 +68,29 @@ public class CustomerLoginRegisterActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, adders);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spiadderscustomer.setAdapter(adapter);
+        RegisterCustomerButton.setOnClickListener(this::onclickRegister);
 
 
 
 
 
-        RegisterCustomerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String mailadress=CustomerEmail.getText().toString();
-                String password=CustomerPassword.getText().toString();
-                String name=Customername.getText().toString();
-                String mobiilephone=Customertel.getText().toString();
-                String adderss=adders.get(Spinner.ACCESSIBILITY_LIVE_REGION_ASSERTIVE) ;
-                // Create a new user with a first, middle, and last name
-                Map<String, Object> user = new HashMap<>();
-                user.put("mail", mailadress);
-                user.put("name", name);
-                user.put("mobiilephone", mobiilephone);
-                user.put("adderss", adderss);
-                user.put("type", "1");
-
-
-// Add a new document with a generated ID
-                db.collection("User")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(CustomerLoginRegisterActivity.this, "Customer  Added", Toast.LENGTH_SHORT).show();
-
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(CustomerLoginRegisterActivity.this, "Customer  Add to Failed", Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
-
-
-            }
-
-        });
-
-
-
+    }
+    public void onclickRegister(View view)
+    {
+        String mailadress = CustomerEmail.getText().toString();
+        String password = CustomerPassword.getText().toString();
+        String name = Customername.getText().toString();
+        String mobiilephone = Customertel.getText().toString();
+        String adderss = adders.get(Spinner.ACCESSIBILITY_LIVE_REGION_ASSERTIVE);
+        // Create a new user with a first, middle, and last name
+        Customer cs = new Customer();
+        cs.setMail(mailadress);
+        cs.setPassword(password);
+        cs.setType(0);
+        cs.setAdress(adderss);
+        cs.setName(name);
+        cs.setTel(mobiilephone);
+        FirebaseService.Add(cs);
 
     }
 

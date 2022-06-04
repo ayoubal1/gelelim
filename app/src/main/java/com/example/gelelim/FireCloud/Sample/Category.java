@@ -2,7 +2,6 @@ package com.example.gelelim.FireCloud.Sample;
 
 import com.example.gelelim.FireCloud.IFirebase;
 
-
 import java.util.ArrayList;
 
 public class Category implements IFirebase

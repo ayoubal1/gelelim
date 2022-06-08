@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/arkaplan"
-    tools:context=".DriverActivity">
+    tools:context=".AdvertisementActivity">
 
 
 
@@ -17,6 +17,7 @@
 
         <include
             layout="@layout/maindriver_toolbar"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,102 +25,43 @@
             android:padding="3dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/textView"
+                android:layout_width="213dp"
                 android:layout_height="wrap_content"
-                android:text="ad:" />
+                android:layout_weight="0"
+                android:text="Konum" />
 
             <EditText
-                android:id="@+id/input_fullName"
-                android:layout_width="match_parent"
+                android:id="@+id/e_t_konum"
+                android:layout_width="185dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="52dp"
-                android:hint="ad"
-                android:inputType="text"
-                android:textColor="#090909" />
+                android:layout_weight="0"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="3dp">
+            android:layout_height="165dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Contact No:" />
+            <Button
+                android:id="@+id/ads_btnekle"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_weight="1"
+                android:onClick="kaydet"
+                android:text="Ekle" />
 
-            <EditText
-                android:id="@+id/inputMobile"
+            <Button
+                android:id="@+id/ads_bitir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:hint="mobile"
-                android:inputType="text"
-                android:textColor="#0B0B0B" />
+                android:layout_weight="1"
+                android:onClick="bitir"
+                android:text="Bitir" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="3dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="E-posta:" />
-
-            <EditText
-                android:id="@+id/eopsta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:hint="E-posta"
-                android:inputType="text"
-                android:textColor="#0B0B0B" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="3dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Adderss:" />
-
-            <EditText
-                android:id="@+id/adderss"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:hint="Adderss"
-                android:inputType="text"
-                android:textColor="#0B0B0B" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="3dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ArabaTip:" />
-
-            <EditText
-                android:id="@+id/arabatip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:hint="ArabaTip"
-                android:inputType="text"
-                android:textColor="#0B0B0B" />
-        </LinearLayout>
-
-
-
 
 
     </LinearLayout>
@@ -131,8 +73,7 @@
         android:layout_gravity="start">
 
 
-        <include
-            layout="@layout/cekmecesidriver"/>
+        <include layout="@layout/cekmecesidriver" />
 
     </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

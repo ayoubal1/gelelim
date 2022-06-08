@@ -14,6 +14,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gelelim.Database.Customer;
+import com.example.gelelim.Database.Driver;
+import com.example.gelelim.FireCloud.FirebaseService;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,14 +28,15 @@ import java.util.Map;
 
 public class DriverLoginRegisterActivity extends AppCompatActivity {
     private TextView CreateDriverAccount;
-    private TextView TitleDriver ,Drivername,Drivertel;
+    private TextView TitleDriver, Drivername, Drivertel;
     private Button LoginDriverButton;
     private Button RegisterDriverButton;
     private EditText DriverEmail;
     private EditText DriverPassword;
-    private Spinner SpiTip,SpiAdres;
+    private Spinner SpiTip, SpiAdres;
 
     FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +51,7 @@ public class DriverLoginRegisterActivity extends AppCompatActivity {
         DriverEmail = (EditText) findViewById(R.id.driver_email);
         DriverPassword = (EditText) findViewById(R.id.driver_password);
         SpiAdres = (Spinner) findViewById(R.id.spiaddress);
-        SpiTip= (Spinner)findViewById(R.id.spitip);
+        SpiTip = (Spinner) findViewById(R.id.spitip);
 
         ArrayList<String> adders = new ArrayList<String>();
         adders.add("Adderss");
@@ -69,47 +73,31 @@ public class DriverLoginRegisterActivity extends AppCompatActivity {
         SpiTip.setAdapter(adapters);
 
 
-
-
-
         RegisterDriverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String mailadress=DriverEmail.getText().toString();
-                String password=DriverPassword.getText().toString();
-                String name=Drivername.getText().toString();
-                String mobiilephone=Drivertel.getText().toString();
-                String adderss=adders.get(Spinner.ACCESSIBILITY_LIVE_REGION_ASSERTIVE) ;
-                String cartype=tip.get(Spinner.ACCESSIBILITY_LIVE_REGION_ASSERTIVE);
-
+                String mailadress = DriverEmail.getText().toString();
+                String password = DriverPassword.getText().toString();
+                String name = Drivername.getText().toString();
+                String mobiilephone = Drivertel.getText().toString();
+                String adderss = adders.get(SpiAdres.getSelectedItemPosition());
+                String cartype = tip.get(SpiTip.getSelectedItemPosition());
                 // Create a new user with a first, middle, and last name
-                Map<String, Object> user = new HashMap<>();
-                user.put("mail", mailadress);
-                user.put("password", password);
-                user.put("name", name);
-                user.put("mobiilephone", mobiilephone);
-                user.put("adderss", adderss);
-                user.put("cartype", cartype);
-                user.put("type", "0");
+                Driver cs = new Driver();
+                cs.setMail(mailadress);
+                cs.setPassword(password);
+                cs.setCarType(cartype);
+                cs.setAdress(adderss);
+                cs.setName(name);
+                cs.setPhone(mobiilephone);
+                cs.setStatu(0);
+                cs.setLocation("");
+
+                FirebaseService.Add(cs);
 
 
 // Add a new document with a generated ID
-                db.collection("User")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(DriverLoginRegisterActivity.this, "Driver  Added", Toast.LENGTH_SHORT).show();
 
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(DriverLoginRegisterActivity.this, "Driver  Add to Failed", Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
             }
         });
     }

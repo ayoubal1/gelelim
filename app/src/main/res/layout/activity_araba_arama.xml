@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/arkaplan"
-    tools:context=".CustomerActivity">
+    tools:context=".ArabaAramaActivity">
 
 
 
@@ -17,6 +17,42 @@
 
         <include
             layout="@layout/main_toolbar"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:text="Choose your Division:" />
+
+            <EditText
+                android:id="@+id/btngetDivison"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:padding="10dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:backgroundTint="@color/design_default_color_primary"
+            android:gravity="center"
+            android:text="Search"
+            android:textColor="#FFFFFF" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/arabasearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
 

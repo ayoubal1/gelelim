@@ -43,7 +43,7 @@ public class CustomerLoginRegisterActivity extends AppCompatActivity {
     private EditText CustomerPassword;
     private Spinner Spiadderscustomer;
     FirebaseFirestore db;
-    ArrayList<String> adders = new ArrayList<>();
+    ArrayList<String> aders = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,37 +61,39 @@ public class CustomerLoginRegisterActivity extends AppCompatActivity {
         Spiadderscustomer = (Spinner) findViewById(R.id.spiadderscustomer);
 
 
-        adders.add("Adderss");
-        adders.add("ankara");
-        adders.add("kastamoun");
-        adders.add("istanbul");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, adders);
+        aders.add("Adderss");
+        aders.add("ankara");
+        aders.add("kestamenu");
+        aders.add("istanbul");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, aders);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spiadderscustomer.setAdapter(adapter);
-        RegisterCustomerButton.setOnClickListener(this::onclickRegister);
+        RegisterCustomerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String mailadress = CustomerEmail.getText().toString();
+                String password = CustomerPassword.getText().toString();
+                String name = Customername.getText().toString();
+                String mobilephone = Customertel.getText().toString();
+                String aderss = aders.get(Spiadderscustomer.getSelectedItemPosition());
+                // Create a new user with a first, middle, and last name
+                    Customer cs=new Customer();
+                    cs.setMail(mailadress);
+                    cs.setPassword(password);
+                    cs.setType(0);
+                    cs.setAdress(aderss);
+                    cs.setName(name);
+                    cs.setTel(mobilephone);
+                    FirebaseService.Add(cs);
+
+            }
+        });
 
 
 
 
 
     }
-    public void onclickRegister(View view)
-    {
-        String mailadress = CustomerEmail.getText().toString();
-        String password = CustomerPassword.getText().toString();
-        String name = Customername.getText().toString();
-        String mobiilephone = Customertel.getText().toString();
-        String adderss = adders.get(Spinner.ACCESSIBILITY_LIVE_REGION_ASSERTIVE);
-        // Create a new user with a first, middle, and last name
-        Customer cs = new Customer();
-        cs.setMail(mailadress);
-        cs.setPassword(password);
-        cs.setType(0);
-        cs.setAdress(adderss);
-        cs.setName(name);
-        cs.setTel(mobiilephone);
-        FirebaseService.Add(cs);
 
-    }
 
 }

@@ -7,8 +7,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.gelelim.Permanent.LoginPermanent;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 public class DriverActivity extends AppCompatActivity {
     DrawerLayout cekmece;
@@ -18,6 +26,30 @@ public class DriverActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver);
         cekmece=findViewById(R.id.arkaplan);
+        Task<Uri> t = FirebaseStorage.getInstance().getReference().child("myImages/" + LoginPermanent.driver.getId()).getDownloadUrl();
+        for (int i = 0; i < 100; i++) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (t.isComplete()) {
+
+                String stR = t.getResult().getPath();
+                String st1R = t.getResult().toString();
+
+                if (t.isSuccessful()) {
+                    ImageView v=findViewById(R.id.ayisus);
+                    Picasso.get().load(t.getResult()).into(v);
+
+                }
+                break;
+            }
+        }
+        TextView v=findViewById(R.id.UserNameView);
+        TextView v1=findViewById(R.id.UserEmailView);
+        v.setText(LoginPermanent.driver.getName());
+        v1.setText(LoginPermanent.driver.getMail());
     }
     public void Menutiklama(View view){
         cekmeceyAc(cekmece);

@@ -19,33 +19,85 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.gelelim.Database.Driver;
+import com.example.gelelim.FireCloud.FirebaseService;
+import com.example.gelelim.Permanent.LoginPermanent;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class ProfieDriverActivity extends AppCompatActivity {
     DrawerLayout cekmece;
     private ImageView imgView;
-    private String imgPath;
-    private static final int REQUEST_LOAD_GALLERY = 100;
+    public Uri imageUri;
+    private StorageReference mstorageReference;
+    private FirebaseStorage storage;
+
+    private static final int REQUEST_LOAD_GALLERY = 1000;
+    EditText txName, txPhone, txPassword, txMail, txAdress;
+    Driver driver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profie_driver);
-        cekmece=findViewById(R.id.arkaplan);
+        cekmece = findViewById(R.id.arkaplan);
         imgView = findViewById(R.id.profile_image);
+        txName = findViewById(R.id.input_fullName);
+        txPhone = findViewById(R.id.inputMobile);
+        txPassword = findViewById(R.id.parol);
+        txMail = findViewById(R.id.eopsta);
+        txAdress = findViewById(R.id.inputAdress);
+        driver = LoginPermanent.driver;
+        txName.setText(driver.getName());
+        txPhone.setText(driver.getPhone());
+        txPassword.setText(driver.getPassword());
+        txMail.setText(driver.getMail());
+        txAdress.setText(driver.getAdress());
+        storage = FirebaseStorage.getInstance();
+        mstorageReference = storage.getReference();
+        Task<Uri> t = FirebaseStorage.getInstance().getReference().child("myImages/" + driver.getId()).getDownloadUrl();
+        for (int i = 0; i < 100; i++) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (t.isComplete()) {
 
+                String stR = t.getResult().getPath();
+                String st1R = t.getResult().toString();
+
+                if (t.isSuccessful()) {
+                    Picasso.get().load(t.getResult()).into(imgView);
+
+                }
+                break;
+            }
+        }
 
         imgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 loadGalery();
             }
         });
     }
-    public void Menutiklama(View view){
+
+    public void Menutiklama(View view) {
         cekmeceyAc(cekmece);
 
     }
@@ -53,34 +105,38 @@ public class ProfieDriverActivity extends AppCompatActivity {
     private void cekmeceyAc(DrawerLayout cekmece) {
         cekmece.openDrawer(GravityCompat.START);
     }
-    public void logoyatiklama(View view){
+
+    public void logoyatiklama(View view) {
         cekmeceyKapat(cekmece);
 
     }
 
     private void cekmeceyKapat(DrawerLayout cekmece) {
-        if (cekmece.isDrawerOpen (GravityCompat.START)){
-            cekmece.closeDrawer (GravityCompat.START);
+        if (cekmece.isDrawerOpen(GravityCompat.START)) {
+            cekmece.closeDrawer(GravityCompat.START);
         }
     }
-    public void Anamenu(View view){
+
+    public void Anamenu(View view) {
         startActivity(new Intent(ProfieDriverActivity.this, DriverActivity.class));
 
 
     }
-    public void Profiemenu(View view){
+
+    public void Profiemenu(View view) {
         recreate();
 
 
-
     }
-    public void advertisementmenu(View view){
+
+    public void advertisementmenu(View view) {
 
         startActivity(new Intent(ProfieDriverActivity.this, AdvertisementActivity.class));
 
 
     }
-    public void advertisemenlisttmenu(View view){
+
+    public void advertisemenlisttmenu(View view) {
 
 
         startActivity(new Intent(ProfieDriverActivity.this, AdslistActivity.class));
@@ -114,67 +170,54 @@ public class ProfieDriverActivity extends AppCompatActivity {
         cekmeceyKapat(cekmece);
         super.onPause();
     }
-    private void loadGalery() {
-        try {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_LOAD_GALLERY);
-                loadGalery();
-            } else {
 
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent, REQUEST_LOAD_GALLERY);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+    private final int galerycode = 1000;
+
+    private void loadGalery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, galerycode);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_LOAD_GALLERY && resultCode == RESULT_OK) {
-            Uri imageSelected = data.getData();
-            String[] filePath = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(imageSelected, filePath, null, null, null);
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePath[0]);
-            String imagePath = cursor.getString(columnIndex);
-            cursor.close();
+        if (resultCode == RESULT_OK && requestCode == galerycode) {
 
-            imgPath = imagePath;
-            Log.i("MainActivity", "Image Path " + imgPath);
-            File f = new File(imagePath);
-
-            String extension = getFileExtension(f);
-
-            if (extension.toLowerCase().equals("jpg") || extension.toLowerCase().equals("jpeg") || extension.toLowerCase().equals("png")) {
-                //check extension file
-
-                //compress size file
-                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                bmOptions.inSampleSize = 8;
-
-                Bitmap bitmap = BitmapFactory.decodeFile(imgPath, bmOptions);
-
-                imgView.setImageBitmap(bitmap);
-            }
+            imageUri = data.getData();
+            imgView.setImageURI(imageUri);
 
 
         }
     }
 
-    private String getFileExtension(File f) {
-        String name = f.getName();
-        try {
-            return name.substring(name.lastIndexOf(".") + 1);
-        } catch (Exception e) {
-            return "";
+
+    public void updatebtn(View view) {
+        driver.setName(txName.getText().toString());
+        driver.setPhone(txPhone.getText().toString());
+        driver.setPassword(txPassword.getText().toString());
+        driver.setMail(txMail.getText().toString());
+        driver.setAdress(txAdress.getText().toString());
+
+        StorageReference ref = FirebaseStorage.getInstance().getReference().child("myImages/" + driver.getId());
+
+        // false
+        UploadTask t = ref.putFile(imageUri);
+
+        for (int i = 0; i < 100; i++) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (t.isComplete()) {
+
+                String ss = t.getResult().getUploadSessionUri().toString();
+
+                driver.setImage(ss);
+                break;
+            }
         }
-
-
+        FirebaseService.UpdateData(driver);
     }
 }

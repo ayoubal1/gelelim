@@ -2,7 +2,8 @@ package com.example.gelelim.Database;
 
 import com.example.gelelim.FireCloud.IFirebase;
 
-public class Customer implements IFirebase {
+public class Customer implements IFirebase
+{
     String id;
     String tel;
     String adress;

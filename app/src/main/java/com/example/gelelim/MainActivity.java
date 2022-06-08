@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         customer.setName("Eyüp");
         customer.setTel("0555555555");
         FirebaseService.AddData(customer);*/
-        Driver driver = FirebaseService.ReadDatas(new Driver()).get(0);
-        Customer customers = FirebaseService.ReadDatas(new Customer()).get(0);
+     //   Driver driver = FirebaseService.ReadDatas(new Driver()).get(0);
+      //  Customer customers = FirebaseService.ReadDatas(new Customer()).get(0);
     /*    for (int i = 0; i < 10; i++) {
             Ads ads=new Ads();
             ads.setDriverid(driver.getId());
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             ads.setPlaka("01ADS31");
             FirebaseService.AddData(ads);
         }*/
-        ArrayList<Ads> adsList = FirebaseService.ReadDatas(new Ads());
+       /* ArrayList<Ads> adsList = FirebaseService.ReadDatas(new Ads());
         Ads sec = adsList.get(4);
         String idDriver = sec.getDriverid();
         Driver getirDriver = new Driver();
@@ -65,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
         image = findViewById(R.id.imageView2);
         logo = findViewById(R.id.textView3);
         image.setAnimation(topAnim);
-        logo.setAnimation(bottomAnim);
+        logo.setAnimation(bottomAnim);*/
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+                Intent intent = new Intent(MainActivity.this, Customerlogin.class);
                 startActivity(intent);
                 finish();
             }
